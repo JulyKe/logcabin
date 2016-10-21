@@ -1,0 +1,1836 @@
+2016-10-21 18:29:27.688029 Server/Main.cc:305 in main() NOTICE[19247:evloop]: Using config file config/logcabin-0.conf
+2016-10-21 18:29:27.688220 Server/Main.cc:345 in main() NOTICE[19247:evloop]: Config file settings:
+# begin config
+electionTimeoutMilliseconds = 12000
+listenAddresses = 127.0.0.1:5254
+serverId = 0
+# end config
+2016-10-21 18:29:27.688348 Server/Globals.cc:172 in init() NOTICE[0:evloop]: Serving on 127.0.0.1:5254 (resolved to 127.0.0.1:5254)
+2016-10-21 18:29:27.688358 Server/RaftConsensus.cc:1041 in init() NOTICE[0:evloop]: My server ID is 0
+2016-10-21 18:29:27.688391 Server/RaftConsensus.cc:1053 in init() NOTICE[0:evloop]: Reading the log
+2016-10-21 18:29:27.702083 Storage/SegmentedLog.cc:898 in readMetadata() NOTICE[0:evloop]: Read metadata version 3 from metadata1
+2016-10-21 18:29:27.702291 Storage/SegmentedLog.cc:898 in readMetadata() NOTICE[0:evloop]: Read metadata version 4 from metadata2
+2016-10-21 18:29:27.702311 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 5) to metadata1
+2016-10-21 18:29:27.704706 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 6) to metadata2
+2016-10-21 18:29:27.721284 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 1:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+}
+
+2016-10-21 18:29:27.721315 Server/RaftConsensus.cc:1078 in init() NOTICE[0:evloop]: The log contains indexes 1 through 1 (inclusive)
+2016-10-21 18:29:27.721322 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 7) to metadata1
+2016-10-21 18:29:27.723956 Server/RaftConsensus.cc:2642 in readSnapshot() NOTICE[0:evloop]: Snapshot file not found in storage/server0/snapshot
+2016-10-21 18:29:27.724060 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:evloop]: server=0, term=1, state=FOLLOWER,  leader=0, vote=0
+2016-10-21 18:29:27.724416 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:SnapshotStateMachine]: Have applied 0% of the 1 total log entries
+2016-10-21 18:29:50.592435 Server/RaftConsensus.cc:2885 in startNewElection() NOTICE[0:startNewElection]: Running for election in term 2
+2016-10-21 18:29:50.592472 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:startNewElection]: server=0, term=2, state=CANDIDATE, leader=0, vote=0
+2016-10-21 18:29:50.592501 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:startNewElection]: Writing new storage metadata (version 8) to metadata2
+2016-10-21 18:29:50.594851 Server/RaftConsensus.cc:2498 in becomeLeader() NOTICE[0:startNewElection]: Now leader for term 2 (appending no-op at index 2)
+2016-10-21 18:29:50.594872 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:startNewElection]: server=0, term=2, state=LEADER,    leader=0, vote=0
+2016-10-21 18:29:50.594927 Server/RaftConsensus.cc:1976 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Appending log entry to advance state machine version to 2 (it may be set to 2 already, but it's hard to check that and not much overhead to just do it again)
+2016-10-21 18:29:50.597989 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 33% of the 3 total log entries
+2016-10-21 18:29:50.598017 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 66% of the 3 total log entries
+2016-10-21 18:29:50.598037 Server/StateMachine.cc:368 in apply() NOTICE[0:StateMachine]: Upgrading state machine to version 2 (from 1)
+2016-10-21 18:30:27.689361 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074627688745974
+end_at: 1477074627688793498
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 3
+  last_log_index: 3
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 37093891781
+  cluster_time_epoch: 63567
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 128
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 3
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 72
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2972484
+    count: 1
+    ewma2: 2972484
+    ewma4: 2972484
+    exceptional_count: 0
+    last: 2972484
+    min: 2972484
+    max: 2972484
+    sum: 2972484
+    stddev: 0
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 3
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218663
+}
+
+2016-10-21 18:31:27.689815 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074687689590227
+end_at: 1477074687689646216
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 3
+  last_log_index: 3
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 97094742806
+  cluster_time_epoch: 63567
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 128
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 3
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 72
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2972484
+    count: 1
+    ewma2: 2972484
+    ewma4: 2972484
+    exceptional_count: 0
+    last: 2972484
+    min: 2972484
+    max: 2972484
+    sum: 2972484
+    stddev: 0
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 3
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218639
+}
+
+2016-10-21 18:32:02.840389 Server/RaftConsensus.cc:1626 in setConfiguration() NOTICE[0:ClientService(11)]: Attempting to change the configuration from 1
+2016-10-21 18:32:02.840418 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(11)]: Adding server 0 at 127.0.0.1:5254 to staging servers
+2016-10-21 18:32:02.840424 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(11)]: Adding server 1 at 127.0.0.1:5255 to staging servers
+2016-10-21 18:32:02.840428 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(11)]: Adding server 2 at 127.0.0.1:5256 to staging servers
+2016-10-21 18:32:02.840439 Server/RaftConsensus.cc:318 in startThread() NOTICE[0:ClientService(11)]: Starting peer thread for server 1
+2016-10-21 18:32:02.840504 Server/RaftConsensus.cc:318 in startThread() NOTICE[0:ClientService(11)]: Starting peer thread for server 2
+2016-10-21 18:32:02.840701 Server/RaftConsensus.cc:2012 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Waiting to receive state machine supported version information from all peers (missing 2 of 3)
+2016-10-21 18:32:02.840733 Server/RaftConsensus.cc:2074 in peerThreadMain() NOTICE[0:Peer(2)]: Peer thread for server 2 started
+2016-10-21 18:32:02.841074 Server/RaftConsensus.cc:2074 in peerThreadMain() NOTICE[0:Peer(1)]: Peer thread for server 1 started
+2016-10-21 18:32:02.850539 Server/RaftConsensus.cc:1655 in setConfiguration() NOTICE[0:ClientService(11)]: Done catching up servers
+2016-10-21 18:32:02.850551 Server/RaftConsensus.cc:1678 in setConfiguration() NOTICE[0:ClientService(11)]: Writing transitional configuration entry
+2016-10-21 18:32:02.850607 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:ClientService(11)]: Activating configuration 4:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:32:02.853460 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:Peer(1)]: Activating configuration 5:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:32:02.853555 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 80% of the 5 total log entries
+2016-10-21 18:32:02.853662 Server/RaftConsensus.cc:1708 in setConfiguration() NOTICE[0:ClientService(11)]: Waiting for stable configuration to commit
+2016-10-21 18:32:02.856413 Server/RaftConsensus.cc:1716 in setConfiguration() NOTICE[0:ClientService(11)]: Stable configuration committed. Configuration change completed successfully
+2016-10-21 18:32:18.638571 Server/RaftConsensus.cc:1626 in setConfiguration() NOTICE[0:ClientService(13)]: Attempting to change the configuration from 5
+2016-10-21 18:32:18.638595 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(13)]: Adding server 0 at 127.0.0.1:5254 to staging servers
+2016-10-21 18:32:18.638601 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(13)]: Adding server 1 at 127.0.0.1:5255 to staging servers
+2016-10-21 18:32:18.638605 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(13)]: Adding server 2 at 127.0.0.1:5256 to staging servers
+2016-10-21 18:32:18.638617 Server/RaftConsensus.cc:1655 in setConfiguration() NOTICE[0:ClientService(13)]: Done catching up servers
+2016-10-21 18:32:18.638620 Server/RaftConsensus.cc:1678 in setConfiguration() NOTICE[0:ClientService(13)]: Writing transitional configuration entry
+2016-10-21 18:32:18.638687 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:ClientService(13)]: Activating configuration 6:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:32:18.640998 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:Peer(2)]: Activating configuration 7:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:32:18.641185 Server/RaftConsensus.cc:1708 in setConfiguration() NOTICE[0:ClientService(13)]: Waiting for stable configuration to commit
+2016-10-21 18:32:18.641296 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 85% of the 7 total log entries
+2016-10-21 18:32:18.645274 Server/RaftConsensus.cc:1716 in setConfiguration() NOTICE[0:ClientService(13)]: Stable configuration committed. Configuration change completed successfully
+2016-10-21 18:32:27.690766 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074747690629307
+end_at: 1477074747690664924
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 7
+  last_log_index: 7
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 157095770521
+  cluster_time_epoch: 148046071296
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 612
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 8
+    last_agree_index: 7
+    is_caught_up: true
+    next_heartbeat_at: 1477074750651006079
+    backoff_until: -7746303086653218624
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 8
+    last_agree_index: 7
+    is_caught_up: true
+    next_heartbeat_at: 1477074750651048805
+    backoff_until: -7746303086653218624
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 7
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 556
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2412642.8
+    count: 5
+    ewma2: 2895994.375
+    ewma4: 2668071.0390625
+    exceptional_count: 0
+    last: 3922657
+    min: 1573946
+    max: 3922657
+    sum: 12063214
+    stddev: 908278.57568598411
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 7
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218704
+}
+
+2016-10-21 18:33:27.411231 Server/RaftConsensus.cc:1626 in setConfiguration() NOTICE[0:ClientService(11)]: Attempting to change the configuration from 7
+2016-10-21 18:33:27.411258 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(11)]: Adding server 0 at 127.0.0.1:5254 to staging servers
+2016-10-21 18:33:27.411263 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(11)]: Adding server 1 at 127.0.0.1:5255 to staging servers
+2016-10-21 18:33:27.411267 Server/RaftConsensus.cc:1634 in setConfiguration() NOTICE[0:ClientService(11)]: Adding server 2 at 127.0.0.1:5256 to staging servers
+2016-10-21 18:33:27.411280 Server/RaftConsensus.cc:1655 in setConfiguration() NOTICE[0:ClientService(11)]: Done catching up servers
+2016-10-21 18:33:27.411284 Server/RaftConsensus.cc:1678 in setConfiguration() NOTICE[0:ClientService(11)]: Writing transitional configuration entry
+2016-10-21 18:33:27.411347 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:ClientService(11)]: Activating configuration 8:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:33:27.414144 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:Peer(2)]: Activating configuration 9:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:33:27.414309 Server/RaftConsensus.cc:1708 in setConfiguration() NOTICE[0:ClientService(11)]: Waiting for stable configuration to commit
+2016-10-21 18:33:27.414340 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 88% of the 9 total log entries
+2016-10-21 18:33:27.417402 Server/RaftConsensus.cc:1716 in setConfiguration() NOTICE[0:ClientService(11)]: Stable configuration committed. Configuration change completed successfully
+2016-10-21 18:33:27.691256 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074807691117658
+end_at: 1477074807691153644
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 9
+  last_log_index: 9
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 217096259960
+  cluster_time_epoch: 216819225526
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 874
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074813417732079
+    backoff_until: -7746303086653218672
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074813417574154
+    backoff_until: -7746303086653218672
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 9
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 818
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2406819.7142857141
+    count: 7
+    ewma2: 2657851.09375
+    ewma4: 2582318.5844726562
+    exceptional_count: 0
+    last: 2950886
+    min: 1573946
+    max: 3922657
+    sum: 16847738
+    stddev: 823716.73336074094
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 9
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218692
+}
+
+2016-10-21 18:34:27.691725 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074867691596795
+end_at: 1477074867691628607
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 9
+  last_log_index: 9
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 277096735790
+  cluster_time_epoch: 216819225526
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 874
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074873421811544
+    backoff_until: -7746303086653218656
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074873421565812
+    backoff_until: -7746303086653218656
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 9
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 818
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2406819.7142857141
+    count: 7
+    ewma2: 2657851.09375
+    ewma4: 2582318.5844726562
+    exceptional_count: 0
+    last: 2950886
+    min: 1573946
+    max: 3922657
+    sum: 16847738
+    stddev: 823716.73336074094
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 9
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218690
+}
+
+2016-10-21 18:35:27.692267 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074927692113675
+end_at: 1477074927692151760
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 9
+  last_log_index: 9
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 337097255631
+  cluster_time_epoch: 216819225526
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 874
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074933428098812
+    backoff_until: -7746303086653218666
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074933427179570
+    backoff_until: -7746303086653218666
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 9
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 818
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2406819.7142857141
+    count: 7
+    ewma2: 2657851.09375
+    ewma4: 2582318.5844726562
+    exceptional_count: 0
+    last: 2950886
+    min: 1573946
+    max: 3922657
+    sum: 16847738
+    stddev: 823716.73336074094
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 9
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218699
+}
+
+2016-10-21 18:36:27.692867 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477074987692714605
+end_at: 1477074987692751878
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 9
+  last_log_index: 9
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 397097856364
+  cluster_time_epoch: 216819225526
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 874
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074993432003977
+    backoff_until: -7746303086653218665
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 10
+    last_agree_index: 9
+    is_caught_up: true
+    next_heartbeat_at: 1477074993431748722
+    backoff_until: -7746303086653218665
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 9
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 818
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2406819.7142857141
+    count: 7
+    ewma2: 2657851.09375
+    ewma4: 2582318.5844726562
+    exceptional_count: 0
+    last: 2950886
+    min: 1573946
+    max: 3922657
+    sum: 16847738
+    stddev: 823716.73336074094
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 9
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 0
+    num_make_directory_success: 0
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 0
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 0
+    num_remove_directory_success: 0
+    num_write_attempted: 0
+    num_write_success: 0
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218699
+}
+
+2016-10-21 18:37:27.693579 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477075047693362513
+end_at: 1477075047693414341
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 14
+  last_log_index: 14
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 457098510715
+  cluster_time_epoch: 436894099027
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 1135
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 15
+    last_agree_index: 14
+    is_caught_up: true
+    next_heartbeat_at: 1477075051491205566
+    backoff_until: -7746303086653218592
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 15
+    last_agree_index: 14
+    is_caught_up: true
+    next_heartbeat_at: 1477075051491433112
+    backoff_until: -7746303086653218592
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 14
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 1079
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2434683.1666666665
+    count: 12
+    ewma2: 2174938.5029296875
+    ewma4: 2387566.3252215385
+    exceptional_count: 0
+    last: 1507197
+    min: 1507197
+    max: 3922657
+    sum: 29216198
+    stddev: 913853.83430756524
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 14
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 1
+    num_make_directory_success: 1
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 1
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 1
+    num_remove_directory_success: 1
+    num_write_attempted: 1
+    num_write_success: 1
+    num_read_attempted: 1
+    num_read_success: 1
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218672
+}
+
+2016-10-21 18:38:27.694120 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477075107693980842
+end_at: 1477075107694014984
+raft {
+  current_term: 2
+  state: LEADER
+  commit_index: 17
+  last_log_index: 17
+  leader_id: 0
+  voted_for: 0
+  start_election_at: 9223372036854775807
+  withhold_votes_until: 9223372036854775807
+  cluster_time: 517099120421
+  cluster_time_epoch: 461897531451
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 1282
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 18
+    last_agree_index: 17
+    is_caught_up: true
+    next_heartbeat_at: 1477075112496685917
+    backoff_until: -7746303086653218671
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+    request_vote_done: false
+    have_vote: false
+    suppress_bulk_data: false
+    next_index: 18
+    last_agree_index: 17
+    is_caught_up: true
+    next_heartbeat_at: 1477075112496754264
+    backoff_until: -7746303086653218671
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+    last_synced_index: 17
+  }
+}
+storage {
+  num_segments: 2
+  open_segment_bytes: 1226
+  metadata_version: 8
+  metadata_write_nanos {
+    average: 3250475.75
+    count: 4
+    ewma2: 2810161.5
+    ewma4: 2865228.03125
+    exceptional_count: 0
+    last: 2335169
+    min: 2335169
+    max: 5826761
+    sum: 13001903
+    stddev: 1488309.9790143475
+  }
+  filesystem_ops_nanos {
+    average: 2803622.9333333331
+    count: 15
+    ewma2: 5570932.1878662109
+    ewma4: 3909434.6528278366
+    exceptional_count: 0
+    last: 9233453
+    min: 1507197
+    max: 9233453
+    sum: 42054344
+    stddev: 1914995.3406749398
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 17
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 0
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 1
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 1
+    num_make_directory_success: 1
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 1
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 1
+    num_remove_directory_success: 1
+    num_write_attempted: 2
+    num_write_success: 2
+    num_read_attempted: 1
+    num_read_success: 1
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746303086653218706
+}
+
+2016-10-21 18:38:35.938001 Server/Globals.cc:46 in handleSignalEvent() NOTICE[0:evloop]: Terminated: shutting down
+2016-10-21 18:38:35.938100 Server/ServerStats.cc:199 in statsDumperMain() NOTICE[0:StatsDumper]: Shutting down
+2016-10-21 18:38:35.938365 Server/StateMachine.cc:108 in ~StateMachine() NOTICE[0:evloop]: Shutting down
+2016-10-21 18:38:35.938375 Server/RaftConsensus.cc:1122 in exit() NOTICE[0:evloop]: Shutting down
+2016-10-21 18:38:35.938381 Server/RaftConsensus.cc:218 in exit() NOTICE[0:evloop]: Flagging peer 2 to exit
+2016-10-21 18:38:35.938385 Server/RaftConsensus.cc:218 in exit() NOTICE[0:evloop]: Flagging peer 1 to exit
+2016-10-21 18:38:35.938398 Server/RaftConsensus.cc:2119 in peerThreadMain() NOTICE[0:Peer(2)]: Peer thread for server 2 exiting
+2016-10-21 18:38:35.938506 Server/RaftConsensus.cc:2119 in peerThreadMain() NOTICE[0:Peer(1)]: Peer thread for server 1 exiting
+2016-10-21 18:38:35.938560 Server/StateMachine.cc:415 in applyThreadMain() NOTICE[0:StateMachine]: exiting
+2016-10-21 18:38:35.938682 Server/RaftConsensus.cc:2021 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Exiting
+2016-10-21 18:38:35.939457 Server/StateMachine.cc:117 in ~StateMachine() NOTICE[0:evloop]: Joined with threads
+2016-10-21 18:38:35.939493 Server/RaftConsensus.cc:1014 in ~RaftConsensus() NOTICE[0:evloop]: Joined with disk and timer threads
+2016-10-21 18:38:35.939500 Server/RaftConsensus.cc:1021 in ~RaftConsensus() NOTICE[0:evloop]: Peer threads have exited
+2016-10-21 18:38:35.939504 Server/RaftConsensus.cc:1028 in ~RaftConsensus() NOTICE[0:evloop]: Completed disk writes
+2016-10-21 18:38:35.939577 Storage/SegmentedLog.cc:467 in ~SegmentedLog() NOTICE[0:evloop]: Closing open segment
+2016-10-21 18:38:35.949531 Storage/SegmentedLog.cc:1169 in closeSegment() NOTICE[0:evloop]: Closing segment (was open-1, renaming to 00000000000000000002-00000000000000000017)
+2016-10-21 18:38:35.952138 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-2
+2016-10-21 18:38:35.952172 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-3
+2016-10-21 18:38:35.952187 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-4
+2016-10-21 18:38:42.708133 Server/Main.cc:305 in main() NOTICE[19483:evloop]: Using config file config/logcabin-0.conf
+2016-10-21 18:38:42.708301 Server/Main.cc:345 in main() NOTICE[19483:evloop]: Config file settings:
+# begin config
+electionTimeoutMilliseconds = 12000
+listenAddresses = 127.0.0.1:5254
+serverId = 0
+# end config
+2016-10-21 18:38:42.708422 Server/Globals.cc:172 in init() NOTICE[0:evloop]: Serving on 127.0.0.1:5254 (resolved to 127.0.0.1:5254)
+2016-10-21 18:38:42.708432 Server/RaftConsensus.cc:1041 in init() NOTICE[0:evloop]: My server ID is 0
+2016-10-21 18:38:42.708462 Server/RaftConsensus.cc:1053 in init() NOTICE[0:evloop]: Reading the log
+2016-10-21 18:38:42.708560 Storage/SegmentedLog.cc:898 in readMetadata() NOTICE[0:evloop]: Read metadata version 7 from metadata1
+2016-10-21 18:38:42.708585 Storage/SegmentedLog.cc:898 in readMetadata() NOTICE[0:evloop]: Read metadata version 8 from metadata2
+2016-10-21 18:38:42.708595 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 9) to metadata1
+2016-10-21 18:38:42.715663 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 10) to metadata2
+2016-10-21 18:38:42.731997 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 1:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+}
+
+2016-10-21 18:38:42.732044 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 4:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:38:42.732055 Server/RaftConsensus.cc:318 in startThread() NOTICE[0:evloop]: Starting peer thread for server 1
+2016-10-21 18:38:42.732087 Server/RaftConsensus.cc:318 in startThread() NOTICE[0:evloop]: Starting peer thread for server 2
+2016-10-21 18:38:42.732121 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 5:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:38:42.732141 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 6:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:38:42.732154 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 7:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:38:42.732170 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 8:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:38:42.732184 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 9:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 18:38:42.732194 Server/RaftConsensus.cc:1078 in init() NOTICE[0:evloop]: The log contains indexes 1 through 17 (inclusive)
+2016-10-21 18:38:42.732206 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 11) to metadata1
+2016-10-21 18:38:42.735888 Server/RaftConsensus.cc:2642 in readSnapshot() NOTICE[0:evloop]: Snapshot file not found in storage/server0/snapshot
+2016-10-21 18:38:42.735996 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:evloop]: server=0, term=2, state=FOLLOWER,  leader=0, vote=0
+2016-10-21 18:38:42.736315 Server/RaftConsensus.cc:2074 in peerThreadMain() NOTICE[0:Peer(2)]: Peer thread for server 2 started
+2016-10-21 18:38:42.736356 Server/RaftConsensus.cc:2074 in peerThreadMain() NOTICE[0:Peer(1)]: Peer thread for server 1 started
+2016-10-21 18:38:42.736506 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:SnapshotStateMachine]: Have applied 0% of the 17 total log entries
+2016-10-21 20:03:16.549087 Server/RaftConsensus.cc:2885 in startNewElection() NOTICE[0:startNewElection]: Running for election in term 3
+2016-10-21 20:03:16.549122 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:startNewElection]: server=0, term=3, state=CANDIDATE, leader=0, vote=0
+2016-10-21 20:03:16.549152 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:startNewElection]: Writing new storage metadata (version 12) to metadata2
+2016-10-21 20:03:16.558377 Server/RaftConsensus.cc:2811 in requestVote() NOTICE[0:Peer(1)]: Got vote from server 1 for term 3
+2016-10-21 20:03:16.558432 Server/RaftConsensus.cc:2498 in becomeLeader() NOTICE[0:Peer(1)]: Now leader for term 3 (appending no-op at index 18)
+2016-10-21 20:03:16.558440 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:Peer(1)]: server=0, term=3, state=LEADER,    leader=0, vote=0
+2016-10-21 20:03:16.558785 Server/RaftConsensus.cc:2012 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Waiting to receive state machine supported version information from all peers (missing 2 of 3)
+2016-10-21 20:03:16.564556 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 11% of the 18 total log entries
+2016-10-21 20:03:16.564583 Server/StateMachine.cc:368 in apply() NOTICE[0:StateMachine]: Upgrading state machine to version 2 (from 1)
+2016-10-21 20:03:16.564591 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 22% of the 18 total log entries
+2016-10-21 20:03:16.564596 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 33% of the 18 total log entries
+2016-10-21 20:03:16.564601 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 44% of the 18 total log entries
+2016-10-21 20:03:16.564605 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 50% of the 18 total log entries
+2016-10-21 20:03:16.564644 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 61% of the 18 total log entries
+2016-10-21 20:03:16.564675 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 72% of the 18 total log entries
+2016-10-21 20:03:16.564688 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 83% of the 18 total log entries
+2016-10-21 20:03:16.564702 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 94% of the 18 total log entries
+2016-10-21 20:03:26.559097 Server/RaftConsensus.cc:1976 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Appending log entry to advance state machine version to 2 (it may be set to 2 already, but it's hard to check that and not much overhead to just do it again)
+2016-10-21 20:03:33.336208 Server/Globals.cc:46 in handleSignalEvent() NOTICE[0:evloop]: Terminated: shutting down
+2016-10-21 20:03:33.336317 Server/ServerStats.cc:199 in statsDumperMain() NOTICE[0:StatsDumper]: Shutting down
+2016-10-21 20:03:33.336674 Server/StateMachine.cc:108 in ~StateMachine() NOTICE[0:evloop]: Shutting down
+2016-10-21 20:03:33.336689 Server/RaftConsensus.cc:1122 in exit() NOTICE[0:evloop]: Shutting down
+2016-10-21 20:03:33.336696 Server/RaftConsensus.cc:218 in exit() NOTICE[0:evloop]: Flagging peer 2 to exit
+2016-10-21 20:03:33.336699 Server/RaftConsensus.cc:218 in exit() NOTICE[0:evloop]: Flagging peer 1 to exit
+2016-10-21 20:03:33.336712 Server/RaftConsensus.cc:2119 in peerThreadMain() NOTICE[0:Peer(1)]: Peer thread for server 1 exiting
+2016-10-21 20:03:33.336729 Server/RaftConsensus.cc:2119 in peerThreadMain() NOTICE[0:Peer(2)]: Peer thread for server 2 exiting
+2016-10-21 20:03:33.336741 Server/RaftConsensus.cc:2021 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Exiting
+2016-10-21 20:03:33.336793 Server/StateMachine.cc:415 in applyThreadMain() NOTICE[0:StateMachine]: exiting
+2016-10-21 20:03:33.337489 Server/StateMachine.cc:117 in ~StateMachine() NOTICE[0:evloop]: Joined with threads
+2016-10-21 20:03:33.337521 Server/RaftConsensus.cc:1014 in ~RaftConsensus() NOTICE[0:evloop]: Joined with disk and timer threads
+2016-10-21 20:03:33.337615 Server/RaftConsensus.cc:1021 in ~RaftConsensus() NOTICE[0:evloop]: Peer threads have exited
+2016-10-21 20:03:33.337618 Server/RaftConsensus.cc:1028 in ~RaftConsensus() NOTICE[0:evloop]: Completed disk writes
+2016-10-21 20:03:33.337687 Storage/SegmentedLog.cc:467 in ~SegmentedLog() NOTICE[0:evloop]: Closing open segment
+2016-10-21 20:03:33.342591 Storage/SegmentedLog.cc:1169 in closeSegment() NOTICE[0:evloop]: Closing segment (was open-1, renaming to 00000000000000000018-00000000000000000019)
+2016-10-21 20:03:33.348185 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-2
+2016-10-21 20:03:33.348215 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-3
+2016-10-21 20:03:33.348230 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-4
+2016-10-21 20:03:57.774008 Server/Main.cc:305 in main() NOTICE[19646:evloop]: Using config file config/logcabin-0.conf
+2016-10-21 20:03:57.776005 Server/Main.cc:345 in main() NOTICE[19646:evloop]: Config file settings:
+# begin config
+electionTimeoutMilliseconds = 12000
+listenAddresses = 127.0.0.1:5254
+serverId = 0
+# end config
+2016-10-21 20:03:57.783846 Server/Globals.cc:172 in init() NOTICE[0:evloop]: Serving on 127.0.0.1:5254 (resolved to 127.0.0.1:5254)
+2016-10-21 20:03:57.783888 Server/RaftConsensus.cc:1041 in init() NOTICE[0:evloop]: My server ID is 0
+2016-10-21 20:03:57.784084 Server/RaftConsensus.cc:1053 in init() NOTICE[0:evloop]: Reading the log
+2016-10-21 20:03:57.792189 Storage/SegmentedLog.cc:898 in readMetadata() NOTICE[0:evloop]: Read metadata version 11 from metadata1
+2016-10-21 20:03:57.792225 Storage/SegmentedLog.cc:898 in readMetadata() NOTICE[0:evloop]: Read metadata version 12 from metadata2
+2016-10-21 20:03:57.792236 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 13) to metadata1
+2016-10-21 20:03:57.796653 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 14) to metadata2
+2016-10-21 20:03:57.803428 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 1:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+}
+
+2016-10-21 20:03:57.803474 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 4:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 20:03:57.803485 Server/RaftConsensus.cc:318 in startThread() NOTICE[0:evloop]: Starting peer thread for server 1
+2016-10-21 20:03:57.803516 Server/RaftConsensus.cc:318 in startThread() NOTICE[0:evloop]: Starting peer thread for server 2
+2016-10-21 20:03:57.803552 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 5:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 20:03:57.803573 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 6:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 20:03:57.803660 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 7:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 20:03:57.803687 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 8:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+next_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 20:03:57.803701 Server/RaftConsensus.cc:585 in setConfiguration() NOTICE[0:evloop]: Activating configuration 9:
+prev_configuration {
+  servers {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+  }
+  servers {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+  }
+  servers {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+  }
+}
+
+2016-10-21 20:03:57.803712 Server/RaftConsensus.cc:1078 in init() NOTICE[0:evloop]: The log contains indexes 1 through 19 (inclusive)
+2016-10-21 20:03:57.803718 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:evloop]: Writing new storage metadata (version 15) to metadata1
+2016-10-21 20:03:57.806577 Server/RaftConsensus.cc:2642 in readSnapshot() NOTICE[0:evloop]: Snapshot file not found in storage/server0/snapshot
+2016-10-21 20:03:57.807375 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:evloop]: server=0, term=3, state=FOLLOWER,  leader=0, vote=0
+2016-10-21 20:03:57.807934 Server/RaftConsensus.cc:2074 in peerThreadMain() NOTICE[0:Peer(2)]: Peer thread for server 2 started
+2016-10-21 20:03:57.807976 Server/RaftConsensus.cc:2074 in peerThreadMain() NOTICE[0:Peer(1)]: Peer thread for server 1 started
+2016-10-21 20:03:57.808073 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:SnapshotStateMachine]: Have applied 0% of the 19 total log entries
+2016-10-21 20:04:11.485953 Server/RaftConsensus.cc:1555 in handleRequestVote() NOTICE[0:RaftService(14)]: Received RequestVote request from server 1 in term 4 (this server's term was 3)
+2016-10-21 20:04:11.485970 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:RaftService(14)]: Writing new storage metadata (version 16) to metadata2
+2016-10-21 20:04:11.488556 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:RaftService(14)]: server=0, term=4, state=FOLLOWER,  leader=0, vote=0
+2016-10-21 20:04:11.488579 Server/RaftConsensus.cc:1567 in handleRequestVote() NOTICE[0:RaftService(14)]: Voting for 1 in term 4
+2016-10-21 20:04:11.488651 Storage/SegmentedLog.cc:778 in updateMetadata() NOTICE[0:RaftService(14)]: Writing new storage metadata (version 17) to metadata1
+2016-10-21 20:04:11.492596 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:RaftService(14)]: server=0, term=4, state=FOLLOWER,  leader=0, vote=1
+2016-10-21 20:04:17.485492 Server/RaftConsensus.cc:1313 in handleAppendEntries() NOTICE[0:RaftService(14)]: All hail leader 1 for term 4
+2016-10-21 20:04:17.485521 Server/RaftConsensus.cc:2854 in printElectionState() NOTICE[0:RaftService(14)]: server=0, term=4, state=FOLLOWER,  leader=1, vote=1
+2016-10-21 20:04:17.485557 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 10% of the 19 total log entries
+2016-10-21 20:04:17.485569 Server/StateMachine.cc:368 in apply() NOTICE[0:StateMachine]: Upgrading state machine to version 2 (from 1)
+2016-10-21 20:04:17.485594 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 21% of the 19 total log entries
+2016-10-21 20:04:17.485599 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 31% of the 19 total log entries
+2016-10-21 20:04:17.485604 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 42% of the 19 total log entries
+2016-10-21 20:04:17.485617 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 52% of the 19 total log entries
+2016-10-21 20:04:17.485670 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 63% of the 19 total log entries
+2016-10-21 20:04:17.485692 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 73% of the 19 total log entries
+2016-10-21 20:04:17.485708 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 84% of the 19 total log entries
+2016-10-21 20:04:17.485717 Server/StateMachine.cc:608 in shouldTakeSnapshot() NOTICE[0:StateMachine]: Have applied 94% of the 19 total log entries
+2016-10-21 20:07:01.750783 Server/ServerStats.cc:148 in dumpToDebugLog() NOTICE[0:StatsDumper]: ServerStats:
+server_id: 0
+addresses: "127.0.0.1:5254"
+start_at: 1477080421749986909
+end_at: 1477080421750062335
+raft {
+  current_term: 4
+  state: FOLLOWER
+  commit_index: 24
+  last_log_index: 24
+  leader_id: 1
+  voted_for: 1
+  start_election_at: 1477080430951803445
+  withhold_votes_until: 1477080430904709795
+  cluster_time: 518179849796
+  cluster_time_epoch: 498609892184
+  last_snapshot_index: 0
+  last_snapshot_bytes: 0
+  log_start_index: 1
+  log_bytes: 1587
+  last_snapshot_term: 0
+  last_snapshot_cluster_time: 0
+  num_entries_truncated: 0
+  peer {
+    server_id: 2
+    addresses: "127.0.0.1:5256"
+    old_member: true
+    new_member: false
+    staging_member: false
+  }
+  peer {
+    server_id: 1
+    addresses: "127.0.0.1:5255"
+    old_member: true
+    new_member: false
+    staging_member: false
+  }
+  peer {
+    server_id: 0
+    addresses: "127.0.0.1:5254"
+    old_member: true
+    new_member: false
+    staging_member: false
+  }
+}
+storage {
+  num_segments: 4
+  open_segment_bytes: 226
+  metadata_version: 17
+  metadata_write_nanos {
+    average: 3392394.4
+    count: 5
+    ewma2: 3426215.875
+    ewma4: 3583716.4296875
+    exceptional_count: 0
+    last: 3927716
+    min: 2575317
+    max: 4376173
+    sum: 16961972
+    stddev: 706347.68969498307
+  }
+  filesystem_ops_nanos {
+    average: 1945569.4
+    count: 5
+    ewma2: 1874998.5
+    ewma4: 1628039.609375
+    exceptional_count: 0
+    last: 1780091
+    min: 547559
+    max: 3458275
+    sum: 9727847
+    stddev: 924554.08541622921
+  }
+}
+state_machine {
+  snapshotting: false
+  last_applied: 24
+  num_sessions: 0
+  num_snapshots_attempted: 0
+  num_snapshots_failed: 0
+  num_redundant_advance_version_entries: 2
+  num_rejected_advance_version_entries: 0
+  num_successful_advance_version_entries: 1
+  num_total_advance_version_entries: 3
+  min_supported_version: 1
+  max_supported_version: 2
+  running_version: 2
+  tree {
+    num_conditions_checked: 0
+    num_conditions_failed: 0
+    num_make_directory_attempted: 1
+    num_make_directory_success: 1
+    num_list_directory_attempted: 0
+    num_list_directory_success: 0
+    num_remove_directory_attempted: 1
+    num_remove_directory_parent_not_found: 0
+    num_remove_directory_target_not_found: 0
+    num_remove_directory_done: 1
+    num_remove_directory_success: 1
+    num_write_attempted: 3
+    num_write_success: 3
+    num_read_attempted: 0
+    num_read_success: 0
+    num_remove_file_attempted: 0
+    num_remove_file_parent_not_found: 0
+    num_remove_file_target_not_found: 0
+    num_remove_file_done: 0
+    num_remove_file_success: 0
+  }
+  num_unknown_requests: 0
+  may_snapshot_at: -7746297901692118065
+}
+
+2016-10-21 20:07:31.395415 Server/Globals.cc:46 in handleSignalEvent() NOTICE[0:evloop]: Terminated: shutting down
+2016-10-21 20:07:31.395521 Server/ServerStats.cc:199 in statsDumperMain() NOTICE[0:StatsDumper]: Shutting down
+2016-10-21 20:07:31.396668 Server/StateMachine.cc:108 in ~StateMachine() NOTICE[0:evloop]: Shutting down
+2016-10-21 20:07:31.396678 Server/RaftConsensus.cc:1122 in exit() NOTICE[0:evloop]: Shutting down
+2016-10-21 20:07:31.396683 Server/RaftConsensus.cc:218 in exit() NOTICE[0:evloop]: Flagging peer 2 to exit
+2016-10-21 20:07:31.396686 Server/RaftConsensus.cc:218 in exit() NOTICE[0:evloop]: Flagging peer 1 to exit
+2016-10-21 20:07:31.396698 Server/RaftConsensus.cc:2119 in peerThreadMain() NOTICE[0:Peer(1)]: Peer thread for server 1 exiting
+2016-10-21 20:07:31.396740 Server/RaftConsensus.cc:2021 in stateMachineUpdaterThreadMain() NOTICE[0:StateMachineUpdater]: Exiting
+2016-10-21 20:07:31.396785 Server/StateMachine.cc:415 in applyThreadMain() NOTICE[0:StateMachine]: exiting
+2016-10-21 20:07:31.396878 Server/RaftConsensus.cc:2119 in peerThreadMain() NOTICE[0:Peer(2)]: Peer thread for server 2 exiting
+2016-10-21 20:07:31.396923 Server/StateMachine.cc:117 in ~StateMachine() NOTICE[0:evloop]: Joined with threads
+2016-10-21 20:07:31.396949 Server/RaftConsensus.cc:1014 in ~RaftConsensus() NOTICE[0:evloop]: Joined with disk and timer threads
+2016-10-21 20:07:31.396953 Server/RaftConsensus.cc:1021 in ~RaftConsensus() NOTICE[0:evloop]: Peer threads have exited
+2016-10-21 20:07:31.396956 Server/RaftConsensus.cc:1028 in ~RaftConsensus() NOTICE[0:evloop]: Completed disk writes
+2016-10-21 20:07:31.396973 Storage/SegmentedLog.cc:467 in ~SegmentedLog() NOTICE[0:evloop]: Closing open segment
+2016-10-21 20:07:31.404726 Storage/SegmentedLog.cc:1169 in closeSegment() NOTICE[0:evloop]: Closing segment (was open-1, renaming to 00000000000000000020-00000000000000000024)
+2016-10-21 20:07:31.406288 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-2
+2016-10-21 20:07:31.406321 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-3
+2016-10-21 20:07:31.406337 Storage/SegmentedLog.cc:478 in ~SegmentedLog() NOTICE[0:evloop]: Removing unused open segment: open-4
